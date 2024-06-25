@@ -12,7 +12,7 @@ jobs:
       - name: Feed to social media
         uses: lwojcik/github-action-feed-to-social-media@v2
         with:
-          feedUrl: 'https://medium.com/feed/tag/bug-bounty'
+          feedUrl: 'http://h1.nobbd.de/reports_rss.xml'
           newestItemStrategy: 'latestDate'
           postFormat: "New post: {title}\n\n{link}"
           # Mastodon settings
