@@ -1,0 +1,50 @@
+name: medium-bugbounty
+on:
+  schedule:
+    # every 15 minutes
+    - cron: "*/60 * * * *"
+  workflow_dispatch:
+
+jobs:
+  Feed2SocialMedia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Feed to social media
+        uses: lwojcik/github-action-feed-to-social-media@v2
+        with:
+          feedUrl: 'https://medium.com/feed/tag/bug-bounty'
+          newestItemStrategy: 'latestDate'
+          postFormat: "New post: {title}\n\n{link}"
+          # Mastodon settings
+          mastodonEnable: false
+          mastodonPostFormat: "New post: {title}\n\n{link}\n\n"
+          mastodonInstance: 'https://mas.to'
+          mastodonAccessToken: 'MASTODON_ACCESS_TOKEN'
+          mastodonPostVisibility: 'unlisted'
+          # Mastodon metadata settings
+          mastodonMetadataEnable: false
+          mastodonMetadataInstance: 'https://mas.to'
+          mastodonMetadataAccessToken: 'MASTODON_METADATA_ACCESS_TOKEN'
+          mastodonMetadataFieldIndex: 0
+          # Twitter settings
+          twitterEnable: false
+          twitterPostFormat: "{title}\n{link}\n\n#bugbounty #bugbountytips #bugbountytip"
+          twitterApiKey: ${{ secrets.TWITTER_APIKEY }}
+          twitterApiKeySecret: ${{ secrets.TWITTER_APIKEY_SECRET }}
+          twitterAccessToken: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          twitterAccessTokenSecret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          # Discord settings
+          discordEnable: true
+          discordPostFormat: "{title}\n\n{link}"
+          discordWebhookUrl: 'DISCORD_WEBHOOK_URL'
+          # Slack settings
+          slackEnable: false
+          slackPostFormat: "New post: {title}\n\n{link}"
+          slackWebhookUrl: 'DISCORD_WEBHOOK_URL'
+          # Bluesky settings
+          blueskyEnable: false
+          blueskyPostFormat: "New post: {title}\n\n{link}"
+          blueskyHandle: 'user.bsky.social'
+          blueskyAppPassword: 'APP_PASSWORD'
+          blueskyOwnerHandle: 'owner.bsky.social'
+          blueskyOwnerContact: 'owner@example.org'
